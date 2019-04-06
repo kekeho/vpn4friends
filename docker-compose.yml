@@ -10,8 +10,6 @@ services:
   
   accounts_server:
     build: accounts_server
-    command: python manage.py makemigrations
-    command: python manage.py migrate
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./accounts_server:/code
