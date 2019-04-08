@@ -10,14 +10,26 @@ services:
   
   accounts_server:
     build: accounts_server
-    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./accounts_server:/code
     ports:
-      - 8000:8000
+      - 8000:8000/tcp
     depends_on:
       - db
+  
+  softether_server:
+    build: vpn_server
+    privileged: True
+    tty: True
+    ports:
+      - 500:500/udp
+      - 4500:4500/udp
+      - 5555:5555
+    volumes:
+      - vpn4friends-vpn-data:/usr/vpnserver
 
 volumes:
   vpn4friends-account-db:
+    driver: local
+  vpn4friends-vpn-data:
     driver: local
