@@ -12,5 +12,4 @@ RUN pip install -r requirements.txt
 # Copy source codes
 COPY . /code/
 
-# Migrate
-RUN python manage.py migrate
+CMD ./migrate-runserver.sh
