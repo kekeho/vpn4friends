@@ -17,19 +17,16 @@ services:
     depends_on:
       - db
   
-  softether_server:
-    build: vpn_server
-    privileged: True
-    tty: True
-    ports:
-      - 500:500/udp
-      - 4500:4500/udp
-      - 5555:5555
+  openvpn_server:
+    image: kylemanna/openvpn
     volumes:
-      - vpn4friends-vpn-data:/usr/vpnserver
+      - ./vpn_server/openvpn_data:/etc/openvpn
+    ports:
+      - 11451:1194
+    cap_add:
+      - NET_ADMIN
+
 
 volumes:
   vpn4friends-account-db:
-    driver: local
-  vpn4friends-vpn-data:
     driver: local
