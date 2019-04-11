@@ -18,7 +18,7 @@ services:
       - db
   
   openvpn_server:
-    image: kylemanna/openvpn
+    build: vpn_server
     volumes:
       - ./vpn_server/openvpn_data:/etc/openvpn
     ports:
