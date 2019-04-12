@@ -20,6 +20,8 @@ services:
       - NET_ADMIN
     depends_on:
       - db
+    environment:
+      - CA_PASS=default
 
 
 volumes:
