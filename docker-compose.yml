@@ -14,8 +14,8 @@ services:
       - ./vpn_server/openvpn_data:/etc/openvpn
       - ./vpn_server/accounts_server:/code
     ports:
-      - 11451:1194
-      - 80:8000
+      - 11451:1194  # OpenVPN
+      - 80:8000  # WEB Front
     cap_add:
       - NET_ADMIN
     depends_on:
