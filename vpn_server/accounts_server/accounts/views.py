@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
+from django.core.mail import BadHeaderError, EmailMessage
 import subprocess
 import os
 
@@ -29,5 +30,15 @@ def profile_create(request):
 
         with open(f'{PROFILES_DIR}/{email}.ovpn', 'w') as profile:
             profile.write(content.decode())
+
+    # Send email
+    subject = 'VPN Profile'
+    message = 'The attached file is OpenVPN profile you requested.'
+    from_email = os.environ['EMAIL_HOST_USER']
+    recipient_list = [email, ]
+    with open(f'{PROFILES_DIR}/{email}.ovpn', 'r') as profile:
+        m = EmailMessage(subject, message, from_email=from_email, to=recipient_list)
+        m.attach(f'{email}.ovpn', profile.read(), 'text/plain')
+        m.send()
 
     return redirect('/connect')
