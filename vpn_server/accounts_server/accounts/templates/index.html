@@ -8,16 +8,16 @@
                 <p class="text-center">hogehoge</p>
             </div>
             <div class="buttons">
-                <a class="btn btn-primary" role="button" href="#">create account</a>
+                <a class="btn btn-primary" role="button" href="#create_account">create account</a>
             </div>
         </div>
     </div>
-    <div class="register-photo">
+    <div class="register-photo" id='create_account'>
         <div class="form-container">
             <div class="image-holder"></div>
             <form method="post" action="/profile_create">
                 {% csrf_token %}
-                <h2 class="text-center"><strong>Create</strong> an account.</h2>
+                <h2 class="text-center">Create an account.</h2>
                 <div class="form-group">
                     <input class="form-control" type="email" name="email" placeholder="Email">
                 </div>
