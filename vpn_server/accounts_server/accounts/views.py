@@ -42,3 +42,7 @@ def profile_create(request):
         m.send()
 
     return redirect('/connect')
+
+
+def connect(request):
+    return render(request, 'connect.html')
