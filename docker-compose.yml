@@ -8,23 +8,25 @@ services:
     ports:
       - 5432:5432
   
-  accounts_server:
-    build: accounts_server
-    volumes:
-      - ./accounts_server:/code
-    ports:
-      - 8000:8000/tcp
-    depends_on:
-      - db
-  
   openvpn_server:
-    image: kylemanna/openvpn
+    build: vpn_server
     volumes:
       - ./vpn_server/openvpn_data:/etc/openvpn
+      - ./vpn_server/accounts_server:/code
     ports:
       - 11451:1194
+      - 80:8000
     cap_add:
       - NET_ADMIN
+    depends_on:
+      - db
+    environment:
+      - CA_PASS=default
+      - EMAIL_TLS=True
+      - EMAIL_HOST=smtp.examplecom
+      - EMAIL_HOST_USER=user@example.com
+      - EMAIL_HOST_PASSWORD=email_account_password
+      - EMAIL_PORT=587
 
 
 volumes:
