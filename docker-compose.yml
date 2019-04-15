@@ -1,13 +1,6 @@
 version: '3.3'
 
 services:
-  db:
-    image: postgres
-    volumes:
-      - vpn4friends-account-db:/var/lib/postgresql/
-    ports:
-      - 5432:5432
-  
   openvpn_server:
     build: vpn_server
     volumes:
@@ -18,8 +11,6 @@ services:
       - 80:8000  # WEB Front
     cap_add:
       - NET_ADMIN
-    depends_on:
-      - db
     environment:
       - CA_PASS=default
       - EMAIL_TLS=True
@@ -27,8 +18,3 @@ services:
       - EMAIL_HOST_USER=user@example.com
       - EMAIL_HOST_PASSWORD=email_account_password
       - EMAIL_PORT=587
-
-
-volumes:
-  vpn4friends-account-db:
-    driver: local
