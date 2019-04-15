@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
-from django.core.mail import BadHeaderError, EmailMessage
+from django.core.mail import EmailMessage
 import subprocess
 import os
 
@@ -27,7 +27,6 @@ def profile_create(request):
 
         # Save profile
         content = subprocess.check_output(['ovpn_getclient', email])
-
         with open(f'{PROFILES_DIR}/{email}.ovpn', 'w') as profile:
             profile.write(content.decode())
 
