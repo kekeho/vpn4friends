@@ -23,9 +23,7 @@ ENV EASYRSA_CRL_DAYS 3650
 VOLUME ["/etc/openvpn"]
 
 # Internally uses port 1194/udp, remap using `docker run -p 443:1194/tcp`
-EXPOSE 1194/udp
-
-CMD ["ovpn_run"]
+EXPOSE 1194/tcp
 
 ADD ./bin /usr/local/bin
 RUN chmod a+x /usr/local/bin/*
@@ -40,6 +38,7 @@ RUN apk add postgresql-dev gcc python3-dev musl-dev
 
 # Init dirs
 RUN mkdir /code
+RUN mkdir /code/profiles
 WORKDIR /code
 
 # Install dependencies
