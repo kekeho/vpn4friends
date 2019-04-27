@@ -2,3 +2,4 @@ accounts_server_env/
 *.pyc
 openvpn_data/
 *.ovpn
+.vscode/

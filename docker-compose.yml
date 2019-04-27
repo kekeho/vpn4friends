@@ -14,7 +14,7 @@ services:
     environment:
       - CA_PASS=default
       - EMAIL_TLS=True
-      - EMAIL_HOST=smtp.examplecom
+      - EMAIL_HOST=smtp.example.com
       - EMAIL_HOST_USER=user@example.com
       - EMAIL_HOST_PASSWORD=email_account_password
       - EMAIL_PORT=587
